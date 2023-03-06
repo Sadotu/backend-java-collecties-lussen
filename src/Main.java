@@ -20,6 +20,7 @@ public class Main {
             System.out.println(printableString);
         }
 
+        // =====================BONUS=====================
         HashSet<Integer> secretNumber = randomNumberGenerator();
         String stringNumber = hashSetToString(secretNumber);
         boolean guessAgain = true;
@@ -75,9 +76,10 @@ public class Main {
         return str;
     }
 
+    //=====================BONUS=====================
     public static String makeGuess(Scanner scanner) {
         String input = scanner.nextLine();
-        if (!input.matches("^[0-9]{4}$")) {
+        if (!input.matches("^[0-9]{4}$")) { // Google: regular expressions
             System.out.println("Invalid input, must be 4 digits and only consist of numbers.");
             input = makeGuess(scanner);
         }
