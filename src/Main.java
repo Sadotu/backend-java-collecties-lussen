@@ -26,7 +26,7 @@ public class Main {
         int attempts = 0;
         System.out.println("take a guess");
 
-        while (guessAgain && attempts <= 10) {
+        while (guessAgain && attempts < 10) {
             attempts++;
             System.out.println("Attempt: " + attempts + "/10");
             String guessString = makeGuess(scanner);
@@ -76,27 +76,29 @@ public class Main {
     }
 
     public static String makeGuess(Scanner scanner) {
-        boolean valid = false;
-        String input = "";
-
-        while (!valid) {
-            try {
-                input = scanner.nextLine();
-                if (input.length() != 4) {
-                    throw new Exception("Input must have 4 characters.");
-                }
-                int number = Integer.parseInt(input);
-                valid = true;
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid input, all characters must be numbers.");
-                input = makeGuess(scanner);
-            } catch (Exception e) {
-                System.out.println("Invalid input, " + e.getMessage());
-                input = makeGuess(scanner);
-            }
+        String input = scanner.nextLine();
+        if (!input.matches("^[0-9]{4}$")) {
+            System.out.println("Invalid input, must be 4 digits and only consist of numbers.");
+            input = makeGuess(scanner);
         }
         return input;
+
+
+        /*try {
+            input = scanner.nextLine();
+            if (input.length() != 4) {
+                throw new Exception("Input must have 4 characters.");
+            }
+            int number = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input, all characters must be numbers.");
+            input = makeGuess(scanner);
+        } catch (Exception e) {
+            System.out.println("Invalid input, " + e.getMessage());
+            input = makeGuess(scanner);
+        }*/
     }
+
 
     public static HashSet<Integer> randomNumberGenerator() {
         HashSet<Integer> set = new HashSet<>();
